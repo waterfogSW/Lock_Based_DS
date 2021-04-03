@@ -1,15 +1,7 @@
 #include <stdio.h>
 #include <pthread.h>
 
-typedef struct __node_t {
-    int             key;
-    struct __node_t *next;
-}node_t;
-
-typedef struct __list_t {
-    node_t          *head;
-    pthread_mutex_t lock;
-}list_t;
+#include "structure_types.h"
 
 void List_Init(list_t *L) {
     L->head = NULL;
@@ -37,7 +29,7 @@ int List_Insert(list_t *L, int key) {
     return 0;
 }
 
-int List_Loockup(list_t *L, int key) {
+int List_Lookup(list_t *L, int key) {
     pthread_mutex_lock(&L->lock);
     node_t *curr = L->head;
     while(curr) {

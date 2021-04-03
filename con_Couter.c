@@ -1,15 +1,7 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#define NUMCPUS 8
-
-typedef struct __counter_t {
-    int             global;
-    pthread_mutex_t glock;
-    int             local[NUMCPUS];
-    pthread_mutex_t llock[NUMCPUS];
-    int             threshold;
-}counter_t;
+#include "structure_types.h"
 
 void init(counter_t *c, int threshold) {
     c->threshold = threshold;
